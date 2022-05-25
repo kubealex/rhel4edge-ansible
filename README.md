@@ -3,7 +3,7 @@
 - Use your built image and move it into the *rhel4edge* folder (image name: r4e-microshift-installer.x86_64.iso)
 - Populate vars.yml file with relevant information. Please respect the format.
  
-        github_repo: #github.com/kubealex/microshift-config 
+        github_repo: #defaults to microshift-config
         github_username:  
         github_token:  
 
