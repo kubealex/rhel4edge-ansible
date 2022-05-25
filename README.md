@@ -2,17 +2,17 @@
 
 - Use your built image and move it into the *rhel4edge* folder (image name: r4e-microshift-installer.x86_64.iso)
 - Populate vars.yml file with relevant information. Please respect the format.
+ 
+        github_repo: #github.com/kubealex/microshift-config 
+        github_username:  
+        github_token:  
 
-    github_repo: #github.com/kubealex/microshift-config
-    github_username: 
-    github_token: 
+        rhel4edge_instances:  
+        - r4e-printer 
+        - r4e-injection 
+        - r4e-label 
 
-    rhel4edge_instances: 
-    - r4e-printer
-    - r4e-injection
-    - r4e-label
-
-    manifests_dir: ~/microshift-config/var/lib/microshift/manifests
+        manifests_dir: ~/microshift-config/var/lib/microshift/manifests
 
 *rhel4edge_instances* will be the value for both the hostname and cluster name. The playbook will create one VM per instance.
 
