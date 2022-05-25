@@ -18,7 +18,7 @@
 
 - Add your VM host relevant information into inventory file. **sudo** privilege must be enabled for the user running the automation.
 - The default kickstart (present as a template in *templates* folder) uses the id_rsa.pub key in the repo for user **redhat** (password: redhat)
-
+- The HUB kubeconfig must be placed in the root folder of the repo
 
 # Build your execution environment
 
