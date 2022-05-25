@@ -1,0 +1,9 @@
+*.log
+*artifact*.json
+*.iso
+microtest/
+vars_.yml
+mc.yml
+kac.yml
+kubeconfig
+import.yml
