@@ -36,7 +36,7 @@
     - name: Set virtual inventory
       ansible.builtin.add_host:
         hostname: "{{ item }}" 
-        ansible_host: "{{ ip_list.results[my_idx].stdout | split(' ') | select() | list | ansible.utils.ipv4 | ansible.utils.ipaddr('address') | join }}"
+        ansible_host: "{{ ip_list.results[loop_index].stdout | split(' ') | select() | list | ansible.utils.ipv4 | ansible.utils.ipaddr('address') | join }}"
         groups:
           - rhel4edge_hosts
         ansible_ssh_private_key_file: "{{ playbook_dir }}/id_rsa"
@@ -44,7 +44,7 @@
         ansible_ssh_common_args: '-o StrictHostKeyChecking=no'          
       loop: "{{ rhel4edge_instances }}"
       loop_control:
-        index_var: my_idx
+        index_var: loop_index
 
 - name: Test playbook
   hosts: rhel4edge_hosts
@@ -154,7 +154,7 @@
 
     - name: Clone microshift-config repo
       ansible.builtin.git:
-        repo: https://{{ github_repo }}
+        repo: https://github.com/{{ github_username }}/{{ github_repo | default('microshift-config') }}
         dest: ~/microshift-config
 
     - name: Setup git config for microshift-config repo
@@ -173,7 +173,7 @@
 
     - name: Commit branch for {{ hostvars[item]['insights_uuid'] }}
       ansible.builtin.shell: 
-        cmd: git checkout {{ hostvars[item]['insights_uuid'] }} && git push https://{{ github_token }}@github.com/{{ github_username }}/microshift-config.git {{ hostvars[item]['insights_uuid'] }} && git checkout main
+        cmd: git checkout {{ hostvars[item]['insights_uuid'] }} && git push https://{{ github_token }}@github.com/{{ github_username }}/{{ github_repo | default('microshift-config') }} {{ hostvars[item]['insights_uuid'] }} && git checkout main
         chdir: ~/microshift-config
       loop: "{{ rhel4edge_instances }}"
 
@@ -187,7 +187,7 @@
   tasks:
     - name: Setup transmission for {{ hostvars[inventory_hostname]['insights_uuid'] }}
       ansible.builtin.copy:
-        content: "https://{{ github_repo }}?ref={{ hostvars[inventory_hostname]['insights_uuid'] }}"
+        content: "https://github.com/{{ github_username }}/{{ github_repo | default('microshift-config') }}?ref={{ hostvars[inventory_hostname]['insights_uuid'] }}"
         dest: /etc/transmission-url
       become: true
 
