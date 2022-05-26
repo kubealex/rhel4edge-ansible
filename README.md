@@ -16,9 +16,9 @@
 
 *rhel4edge_instances* will be the value for both the hostname and cluster name. The playbook will create one VM per instance.
 
-- Add your VM host relevant information into inventory file. **sudo** privilege must be enabled for the user running the automation.
+- Add your VM host relevant information into inventory file. **sudo** privilege must be enabled for the user running the automation. Since we are running in an Execution environment, ensure you are able to SSH to the VM Host before you start.
 - The default kickstart (present as a template in *templates* folder) uses the id_rsa.pub key in the repo for user **redhat** (password: redhat)
-- The HUB kubeconfig must be placed in the root folder of the repo
+- The kubeconfig of the cluster hosting ACM HUB must be placed in the root folder of the repo
 
 # Build your execution environment
 

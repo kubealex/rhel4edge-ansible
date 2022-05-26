@@ -1,2 +1,1 @@
 [vm_host]
-homeland ansible_host=192.168.1.69 ansible_user=alerossi
