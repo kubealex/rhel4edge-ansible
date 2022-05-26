@@ -4,6 +4,11 @@
   vars_files:
     - vars.yml
   tasks:
+    - name: Ensure lorax is installed
+      ansible.builtin.dnf:
+        name: lorax
+        state: present
+
     - name: Create instance dirs
       ansible.builtin.file:
         path: "{{ playbook_dir }}/rhel4edge/{{ item }}"
@@ -14,11 +19,11 @@
     - name: Trigger kickstart template
       ansible.builtin.template:
         src: kickstart.j2
-        dest: "{{ playbook_dir }}/rhel4edge/{{ item }}/kickstart.ks"
+        dest: "{{ playbook_dir }}/rhel4edge/{{ item }}/kickstart"
       loop: "{{ rhel4edge_instances }}"
 
     - name: Embed kickstart on freshly built image
-      ansible.builtin.shell: mkksiso {{ playbook_dir }}/rhel4edge/{{ item }}/kickstart.ks {{ playbook_dir }}/rhel4edge/r4e-microshift-installer.x86_64.iso /var/lib/libvirt/images/{{ item }}-r4e-microshift-installer.x86_64.iso
+      ansible.builtin.shell: mkksiso {{ playbook_dir }}/rhel4edge/{{ item }}/kickstart {{ playbook_dir }}/rhel4edge/r4e-microshift-installer.x86_64.iso /var/lib/libvirt/images/{{ item }}-r4e-microshift-installer.x86_64.iso
       become: true
       loop: "{{ rhel4edge_instances }}"
 
