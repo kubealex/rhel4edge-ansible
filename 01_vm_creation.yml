@@ -34,4 +34,4 @@
 
     - name: Wait for VMs to settle
       ansible.builtin.pause:
-        seconds: 45
+        seconds: 240
