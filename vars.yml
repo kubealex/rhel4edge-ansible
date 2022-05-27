@@ -1,11 +1,13 @@
 #### GitHub 
-github_repo: #defaults to microshift-config
+github_repo: 
 github_username: 
 github_token: 
 
+#### Cluster definition
 rhel4edge_instances: 
-  - r4e-printer
-  - r4e-injection
-  - r4e-label
-
-manifests_dir: ~/microshift-config/var/lib/microshift/manifests
+  - cluster_name:
+    cluster_role:
+  - cluster_name:
+    cluster_role:
+  - cluster_name:
+    cluster_role:    
