@@ -31,12 +31,24 @@
         kubeconfig: "{{ playbook_dir }}/kubeconfig"
       loop: "{{ rhel4edge_instances }}"      
 
+    - name: Remove created files
+      ansible.builtin.file:
+        path: "{{ playbook_dir }}/{{ item }}-import.yml"
+        state: absent
+      loop: "{{ rhel4edge_instances }}"
+
+
+    - name: Remove created files
+      ansible.builtin.file:
+        path: "{{ playbook_dir }}/rhel4edge/{{ item }}"
+        state: absent
+      loop: "{{ rhel4edge_instances }}"
+
     - name: Destroy VMs
       community.libvirt.virt:
         name: "{{ item }}"
         state: destroyed      
       loop: "{{ rhel4edge_instances }}"
-
 
     - name: Undefine VMs
       community.libvirt.virt:
