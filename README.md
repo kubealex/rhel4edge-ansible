@@ -40,5 +40,11 @@ The image name is already configured in **ansible-navigator.yaml** file
 
 To run the automation:
 
-    ansible-navigator ansible-navigator run 02_vms-and-registration -m stdout 
+    ansible-navigator run 02_vms-and-registration -m stdout 
 
+
+# Clean up the environment
+
+To clean up the environment, run the cleanup playbook
+
+    ansible-navigator run cleanup.yml -m stdout 

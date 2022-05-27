@@ -3,28 +3,28 @@
   vars_files:
     - vars.yml
   tasks:
-    - name: Create managedCluster resource for managed clusters
+    - name: Remove managedCluster resource for managed clusters
       kubernetes.core.k8s:
         definition: "{{ lookup('template', 'managedCluster.j2', template_vars=dict(cluster_name=item.cluster_name)) }}"
         state: absent
         kubeconfig: "{{ playbook_dir }}/kubeconfig"
       loop: "{{ rhel4edge_instances }}"
 
-    - name: Create klusterletAddonConfig for managed clusters
+    - name: Remove klusterletAddonConfig for managed clusters
       kubernetes.core.k8s:
         definition: "{{ lookup('template', 'klusterletAddonConfig.j2', template_vars=dict(cluster_name=item.cluster_name)) }}"
         state: absent
         kubeconfig: "{{ playbook_dir }}/kubeconfig"
       loop: "{{ rhel4edge_instances }}"
 
-    - name: Create klusterletAddonConfig for managed clusters
+    - name: Remove klusterletAddonConfig for managed clusters
       kubernetes.core.k8s:
         definition: "{{ lookup('template', 'clusterRoleBinding.j2', template_vars=dict(cluster_name=item.cluster_name)) }}"
         state: absent
         kubeconfig: "{{ playbook_dir }}/kubeconfig"
       loop: "{{ rhel4edge_instances }}"
 
-    - name: Create project for managed clusters
+    - name: Remove project for managed clusters
       kubernetes.core.k8s:
         definition: "{{ lookup('template', 'project.j2', template_vars=dict(cluster_name=item.cluster_name)) }}"
         state: absent
@@ -44,3 +44,12 @@
         state: absent
       loop: "{{ rhel4edge_instances }}"
 
+- name: Remove VMs
+  hosts: vm_host
+  vars_files:
+    - vars.yml
+  tasks:
+    - name: Remove VMs from host
+      ansible.builtin.shell: virsh destroy {{ item.cluster_name }} && virsh undefine {{ item.cluster_name }}
+      become: true
+      loop: "{{ rhel4edge_instances }}"
