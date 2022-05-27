@@ -8,6 +8,7 @@
       ansible.builtin.dnf:
         name: lorax
         state: present
+      become: true
 
     - name: Create instance dirs
       ansible.builtin.file:
