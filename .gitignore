@@ -2,4 +2,5 @@
 *artifact*.json
 *.iso
 kubeconfig
+pullSecret
 *import.yml

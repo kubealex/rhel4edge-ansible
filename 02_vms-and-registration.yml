@@ -4,6 +4,9 @@
   vars_files:
     - vars.yml
   tasks:
+    - name: Check prerequisites
+      ansible.builtin.import_tasks: 00_check_prerequisites.yml
+      
     - name: Find IP of the newly created hosts
       ansible.builtin.shell: virsh net-dhcp-leases default | grep {{ item.cluster_name }}
       become: true

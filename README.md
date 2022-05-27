@@ -8,7 +8,7 @@
 
 - Populate vars.yml file with relevant information. Please respect the format.
  
-        github_repo: #if you delete this variable, it defaults to microshift-config
+        github_repo: # Repo for microshift-config needed files. If you delete this variable, it defaults to microshift-config
         github_username: #i.e. kubealex
         github_token: # your github token 
 

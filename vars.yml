@@ -1,13 +1,9 @@
-#### GitHub 
+#### GitHub info ####
 github_repo: 
 github_username: 
 github_token: 
 
-#### Cluster definition
+#### microshift info ####
 rhel4edge_instances: 
-  - cluster_name:
-    cluster_role:
-  - cluster_name:
-    cluster_role:
-  - cluster_name:
-    cluster_role:    
+  - cluster_name: 
+    cluster_role: 
