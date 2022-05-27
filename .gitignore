@@ -1,6 +1,5 @@
 *.log
 *artifact*.json
 *.iso
-rhel4edge/*
 kubeconfig
 *import.yml
