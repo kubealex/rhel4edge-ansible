@@ -1,5 +1,6 @@
 # Ansible playbook to provision rhel4edge vms and register into and ACM hub
 
+!!! IMPORTANT - Python > 3.8 must be present 
 - Use your built image and move it into the *rhel4edge* folder (image name: r4e-microshift-installer.x86_64.iso)
 - Populate vars.yml file with relevant information. Please respect the format.
  
